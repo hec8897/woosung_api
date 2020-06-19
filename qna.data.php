@@ -28,14 +28,14 @@ while($row = mysqli_fetch_array($query)){
 
 $phpResult = isset($query)?"ok":"no";
 
-$Login_info = json_encode([
+$Data= json_encode([
             "phpResult"=>$phpResult,
             "result"=>$result,
             "test"=>$test,
             'test2'=>$sql,
         ]);
 
-echo urldecode($Login_info);
+echo urldecode($Data);
 header('Content-Type: application/json');
 header('Content-Type: text/html; charset=utf-8');
 
