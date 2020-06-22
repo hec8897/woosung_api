@@ -2,6 +2,8 @@
 include("conn/conn.php");
 include("inc/file_uploader.php");
 $data = json_decode(file_get_contents("php://input"),true);
+$mode = $_POST['mode'];
+
 
 $cate = $_POST['cate'];
 $title = $_POST['title'];
@@ -10,17 +12,28 @@ $fixed = $_POST['fixed'];
 $active = $_POST['active'];
 
 
-$file0 = FileUploader($_FILES['file0']);
-$file1 = FileUploader($_FILES['file1']);
-$file2 = FileUploader($_FILES['file2']);
-$file3 = FileUploader($_FILES['file3']);
-$file4 = FileUploader($_FILES['file4']);
+$file0 = isset($_FILES['file0'])?FileUploader($_FILES['file0']):"";
+$file1 = isset($_FILES['file1'])?",".FileUploader($_FILES['file1']):"";
+$file2 = isset($_FILES['file2'])?",".FileUploader($_FILES['file2']):"";
+$file3 = isset($_FILES['file3'])?",".FileUploader($_FILES['file3']):"";
+$file4 = isset($_FILES['file4'])?",".FileUploader($_FILES['file4']):"";
+
+$fileName = $file0.$file1.$file2.$file3.$file4;
 
 
+if($mode == 'create'){
 
-$Data= json_encode([
-    "phpResult"=>$_POST,
-    "test"=>$_FILES['file0']
+    $sql = "INSERT INTO `woosung_web`.`tb_support` 
+    (`title`, `cate`, `desc`, `date`, `fixed`, `active`,`file`) VALUES 
+    ('$title', '$cate', '$desc', '$date', '$fixed','$active','$fileName')";
+    $query =  mysqli_query($conn,$sql);
+}
+
+$phpResult = isset($query)?"ok":"no";
+
+$Data = json_encode([
+    "phpResult"=>$phpResult,
+    "sql"=>$sql
 ]);
 
 echo urldecode($Data);

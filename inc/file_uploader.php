@@ -13,12 +13,9 @@
 if(in_array(strtolower($extension),$valid_extensions) ) {
    // Upload file
    if(move_uploaded_file($files['tmp_name'], "upload_support/".$filename)){
-      echo 1;
    }else{
-      echo 0;
    }
     }else{
-    echo 0;
     }
     return $filename;
     }

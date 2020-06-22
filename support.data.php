@@ -16,12 +16,12 @@ while($row = mysqli_fetch_array($query)){
     [
         "no" => $row['idx'],
         "cate" => $row['cate'],
-        "tit" => $row['title'],
+        "title" => $row['title'],
         "desc" => $row['desc'],
         "files" =>$row['file'],
         "fixed" => $row['fixed'],
         "active" => $row['active'],
-        
+
         "join" => $row['join'],
         "date" => $row['date']
     ]
