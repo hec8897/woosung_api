@@ -12,12 +12,11 @@ if($mode == 'update'){
 
     $sql = "UPDATE `woosung_web`.`tb_qna` SET `answer` = '$answer', `status` = '$status' WHERE (`idx` = '$idx')";
     $query =  mysqli_query($conn,$sql);
-
 }
+
 else if($mode == 'delete'){
     $sql = "DELETE FROM `woosung_web`.`tb_qna` WHERE (`idx` = '$idx')";
     $query =  mysqli_query($conn,$sql);
-
 }
 
 $phpResult = isset($query)?"ok":"no";
