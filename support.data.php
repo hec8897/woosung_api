@@ -12,8 +12,7 @@ $query =  mysqli_query($conn,$sql);
 
 $result = array();
 while($row = mysqli_fetch_array($query)){
-    array_push($result,
-    [
+    array_push($result,[
         "no" => $row['idx'],
         "cate" => $row['cate'],
         "title" => $row['title'],
@@ -21,11 +20,9 @@ while($row = mysqli_fetch_array($query)){
         "files" =>$row['file'],
         "fixed" => $row['fixed'],
         "active" => $row['active'],
-
         "join" => $row['join'],
         "date" => $row['date']
-    ]
-);
+    ]);
 }
 
 $phpResult = isset($query)?"ok":"no";
