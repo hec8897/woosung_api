@@ -3,10 +3,20 @@ include("conn/conn.php");
 $data = json_decode(file_get_contents("php://input"),true);
 
 $idx = $data['idx'];
+$mode = $data['mode'];
 
-$sql = isset($data['idx'])?
-"SELECT * FROM tb_faq WHERE `idx` = $idx":
-"SELECT * FROM tb_faq";
+
+if(isset($data['idx'])){
+  $sql = "SELECT * FROM tb_faq WHERE `idx` = $idx";
+}
+else{
+    if($mode == 'page'){
+        $sql = "SELECT * FROM woosung_web.tb_faq WHERE `active` =  1 ORDER By `idx` DESC";
+    }
+    else{
+        $sql = "SELECT * FROM woosung_web.tb_faq ORDER BY `idx`"; 
+    }
+}
 
 $query =  mysqli_query($conn,$sql);
 
