@@ -53,11 +53,18 @@ else{
         $idx = $data['no'];
         $files = $data['files'];
         $fileName = $files[0];
+
         for($count = 0; $count < count($files); $count++){
             unlink("upload_support/".$files[$count]);
         }
+
         $sql = "DELETE FROM `woosung_web`.`tb_support` WHERE (`idx` = '$idx')";
         $query =  mysqli_query($conn,$sql);
+    }
+    else if($mode == 'FileUploader'){
+        $fileName = $data['fileName'];
+        $result = file_exists("upload_support/".$fileName);
+
     }
     else if($mode == 'fileDelte'){
         $fileName = $data['FileName'];
@@ -76,7 +83,7 @@ $phpResult = isset($query)?"ok":"no";
 
 $Data = json_encode([
     "phpResult"=>$phpResult,
-    "test"=>$sql
+    "result"=>$result
 ]);
 
 echo urldecode($Data);
