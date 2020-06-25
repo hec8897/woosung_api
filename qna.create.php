@@ -12,7 +12,7 @@ if($mode == 'update'){
     $sql = "UPDATE `woosung_web`.`tb_qna` SET `answer` = '$answer', `status` = '$status' WHERE (`idx` = '$idx')";
     $query =  mysqli_query($conn,$sql);
 }
-else if($mode ="insert"){
+else if($mode == "insert"){
     $contact = $data['contact'];
     $tit = $data['tit'];
     $write = $data['write'];
@@ -24,7 +24,7 @@ else if($mode ="insert"){
 
     $sql = "INSERT INTO `woosung_web`.`tb_qna` 
     (`cate`, `tit`, `writer`, `desc`, `private`, `contact`,`password`,`date`,`status`) 
-    VALUES ('$cate', '$tit', '$write', '$desc', '$private', '$contact','$password','$date','답변대기')";
+    VALUES ('$cate', '$tit', '$write', '$desc', '$private', '$contact','$password','$date','접수대기')";
     $query =  mysqli_query($conn,$sql);
 
 }
@@ -37,6 +37,7 @@ $phpResult = isset($query)?"ok":"no";
 
 $Data= json_encode([
     "phpResult"=>$phpResult,
+    "test"=>$sql
 ]);
 
 echo urldecode($Data);
