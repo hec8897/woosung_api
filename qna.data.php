@@ -22,6 +22,7 @@ while($row = mysqli_fetch_array($query)){
         "recive"=>$row['answer'],
         "desc"=>$row['desc'],
         "status"=>$row['status'],
+        "private"=>$row['private']
     ]
 );
 }

@@ -13,22 +13,19 @@ if($mode == 'update'){
     $query =  mysqli_query($conn,$sql);
 }
 else if($mode ="insert"){
-    $error = isset($data['error'])?$data['error'].'.':"";
-    $pro = isset($data['pro'])?$data['pro'].',':"";
-    $pos = isset($data['pos'])?$data['pos'].',':"";
-    $etc = isset($data['etc'])?$data['etc'].',':"";
     $contact = $data['contact'];
     $tit = $data['tit'];
     $write = $data['write'];
     $desc = $data['desc'];
-    $private = $data['private'];
+    $private = $data['private'] == ""?0:1;
+    $password = $data['password'];
 
-    $cate = $error$pro$pos$etc;
+    $cate = $data['cate'];
 
     $sql = "INSERT INTO `woosung_web`.`tb_qna` 
-    (`cate`, `tit`, `writer`, `desc`, `answer`, `private`, `contact`) 
-    VALUES ('$cate', '$tit', '$write', '$desc', '$private', '$contact')";
-    // $query =  mysqli_query($conn,$sql);
+    (`cate`, `tit`, `writer`, `desc`, `private`, `contact`,`password`,`date`,`status`) 
+    VALUES ('$cate', '$tit', '$write', '$desc', '$private', '$contact','$password','$date','답변대기')";
+    $query =  mysqli_query($conn,$sql);
 
 }
 else if($mode == 'delete'){
@@ -40,7 +37,6 @@ $phpResult = isset($query)?"ok":"no";
 
 $Data= json_encode([
     "phpResult"=>$phpResult,
-    "mode"=>$sql
 ]);
 
 echo urldecode($Data);
