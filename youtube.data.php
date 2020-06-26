@@ -17,6 +17,7 @@ while($row = mysqli_fetch_array($query)){
         "no"=>$row['idx'],
         "youtubeId"=>$row['youtubeId'],
         "title"=>$row['title'],
+        "cate"=>$row['cate'],
         "desc"=>$row['desc'],
         "date"=>$row['date'],
         "private"=>$row['private']
