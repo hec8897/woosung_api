@@ -42,7 +42,7 @@ else if($mode == 'insert'){
     $desc = $data['desc'];
     $cate = $data['cate'];
     $active = $data['active'];
-
+    $img = $data['imgs'];
 
     $sql = "INSERT INTO `woosung_web`.`tb_faq` 
     (`tit`, `cate`,`imgs`, `desc`, `date`, `order_no`, `active`) VALUES 
