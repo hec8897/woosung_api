@@ -79,12 +79,14 @@ else{
     }
 }
 
+
 $phpResult = isset($query)?"ok":"no";
 
 $Data = json_encode([
     "phpResult"=>$phpResult,
     "result"=>$result
 ]);
+
 
 echo urldecode($Data);
 header('Content-Type: application/json');
