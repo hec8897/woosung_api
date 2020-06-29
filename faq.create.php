@@ -11,12 +11,28 @@ if($mode == 'update'){
     $desc = $data['desc'];
     $cate = $data['cate'];
     $active = $data['active'];
+    $img = $data['imgs'];
+    $DelteImg = $data['delteImg'];
 
-    $sql = "UPDATE `woosung_web`.`tb_faq` SET `tit` = '$tit', `cate` = '$cate', `active` = '$active', `desc` = '$desc' WHERE (`idx` = '$idx')";
+
+    for($count = 0; $count < count($DelteImg); $count++){
+        unlink("upload_faq/".$DelteImg[$count]);
+    }
+
+    $sql = "UPDATE `woosung_web`.`tb_faq` SET 
+    `tit` = '$tit', `cate` = '$cate',
+    `imgs`= '$img', `active` = '$active', 
+    `desc` = '$desc' WHERE (`idx` = '$idx')";
     $query =  mysqli_query($conn,$sql);
 
 }
 else if($mode == 'delete'){
+    $Files = $data['Files'];
+
+    for($count = 0; $count < count($Files); $count++){
+        unlink("upload_faq/".$Files[$count]);
+    }
+
     $sql = "DELETE FROM `woosung_web`.`tb_faq` WHERE (`idx` = '$idx')";
     $query =  mysqli_query($conn,$sql);
 }
@@ -27,9 +43,10 @@ else if($mode == 'insert'){
     $cate = $data['cate'];
     $active = $data['active'];
 
+
     $sql = "INSERT INTO `woosung_web`.`tb_faq` 
-    (`tit`, `cate`, `desc`, `date`, `order_no`, `active`) VALUES 
-    ('$tit', '$cate', '$desc', '$date', '0', '$active')";
+    (`tit`, `cate`,`imgs`, `desc`, `date`, `order_no`, `active`) VALUES 
+    ('$tit', '$cate', '$img' , '$desc', '$date', '0', '$active')";
     $query =  mysqli_query($conn,$sql);
 
 }

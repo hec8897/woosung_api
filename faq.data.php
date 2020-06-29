@@ -22,16 +22,15 @@ $query =  mysqli_query($conn,$sql);
 
 $result = array();
 while($row = mysqli_fetch_array($query)){
-    array_push($result,
-    [
+    array_push($result,[
         "no" => $row['idx'],
         "tit" => $row['tit'],
         "desc" => $row['desc'],
+        "imgs"=>$row['imgs'],
         "cate" => $row['cate'],
         "date" => $row['date'],
         "active" => $row['active']
-    ]
-);
+    ]);
 }
 
 $phpResult = isset($query)?"ok":"no";
