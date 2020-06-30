@@ -28,6 +28,7 @@ while($row = mysqli_fetch_array($query)){
         "desc" => $row['desc'],
         "imgs"=>$row['imgs'],
         "cate" => $row['cate'],
+        "midCate" => $row['mid_cate'],
         "date" => $row['date'],
         "active" => $row['active']
     ]);

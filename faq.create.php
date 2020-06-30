@@ -10,6 +10,7 @@ if($mode == 'update'){
     $tit = $data['tit'];
     $desc = $data['desc'];
     $cate = $data['cate'];
+    $midCate = $data['midCate'];
     $active = $data['active'];
     $img = $data['imgs'];
     $DelteImg = $data['delteImg'];
@@ -20,7 +21,7 @@ if($mode == 'update'){
     }
 
     $sql = "UPDATE `woosung_web`.`tb_faq` SET 
-    `tit` = '$tit', `cate` = '$cate',
+    `tit` = '$tit', `cate` = '$cate', `mid_cate`='$midCate',
     `imgs`= '$img', `active` = '$active', 
     `desc` = '$desc' WHERE (`idx` = '$idx')";
     $query =  mysqli_query($conn,$sql);
@@ -41,12 +42,13 @@ else if($mode == 'insert'){
     $tit = $data['tit'];
     $desc = $data['desc'];
     $cate = $data['cate'];
+    $midCate = $data['midCate'];
     $active = $data['active'];
     $img = $data['imgs'];
 
     $sql = "INSERT INTO `woosung_web`.`tb_faq` 
-    (`tit`, `cate`,`imgs`, `desc`, `date`, `order_no`, `active`) VALUES 
-    ('$tit', '$cate', '$img' , '$desc', '$date', '0', '$active')";
+    (`tit`, `cate`,`mid_cate`,`imgs`, `desc`, `date`, `order_no`, `active`) VALUES 
+    ('$tit', '$cate','$midCate','$img' , '$desc', '$date', '0', '$active')";
     $query =  mysqli_query($conn,$sql);
 
 }
@@ -63,6 +65,7 @@ $phpResult = isset($query)?"ok":"no";
 
 $Data= json_encode([
     "phpResult"=>$phpResult,
+    "sql"=>$sql
 ]);
 
 echo urldecode($Data);
