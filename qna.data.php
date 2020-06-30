@@ -3,15 +3,17 @@ include("conn/conn.php");
 $data = json_decode(file_get_contents("php://input"),true);
 
 $idx = $data['idx'];
+$mode = $data['mode'];
 
 $sql = isset($data['idx'])?
 "SELECT * FROM tb_qna WHERE `idx` = $idx":
-"SELECT * FROM tb_qna";
+"SELECT * FROM tb_qna ORDER BY idx desc";
 
 $query =  mysqli_query($conn,$sql);
 
 $result = array();
 while($row = mysqli_fetch_array($query)){
+
     array_push($result,
     [
         "no"=>$row['idx'],
@@ -22,7 +24,9 @@ while($row = mysqli_fetch_array($query)){
         "recive"=>$row['answer'],
         "desc"=>$row['desc'],
         "status"=>$row['status'],
-        "private"=>$row['private']
+        "private"=>$row['private'],
+        "contact"=>$row['contact'],
+        "password"=>$row['password']
     ]
 );
 }
