@@ -39,6 +39,7 @@ else if($mode == 'insert'){
 
 }
 
+
 $phpResult = isset($query)?"ok":"no";
 
 $Data= json_encode([

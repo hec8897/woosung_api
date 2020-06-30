@@ -14,7 +14,7 @@ else{
         $sql = "SELECT * FROM woosung_web.tb_faq WHERE `active` =  1 ORDER By `idx` DESC";
     }
     else{
-        $sql = "SELECT * FROM woosung_web.tb_faq ORDER BY `idx`"; 
+        $sql = "SELECT * FROM woosung_web.tb_faq ORDER BY `idx` DESC"; 
     }
 }
 

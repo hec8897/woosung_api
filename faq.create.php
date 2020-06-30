@@ -50,6 +50,14 @@ else if($mode == 'insert'){
     $query =  mysqli_query($conn,$sql);
 
 }
+else if($mode == 'fileDelte'){
+    $Files = $data['files'];
+    
+    for($count = 0; $count < count($Files); $count++){
+        unlink("upload_faq/".$Files[$count]);
+    }
+
+}
 
 $phpResult = isset($query)?"ok":"no";
 
