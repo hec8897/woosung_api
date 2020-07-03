@@ -6,7 +6,7 @@ $idx = $data['idx'];
 
 $sql = isset($data['idx'])?
 "SELECT * FROM farm_data WHERE `idx` = $idx":
-"SELECT * FROM farm_data";
+"SELECT * FROM farm_data ORDER By `idx` DESC";
 
 $query =  mysqli_query($conn,$sql);
 
