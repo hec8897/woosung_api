@@ -36,6 +36,5 @@ $Data = json_encode([
             ]);
 
 echo urldecode($Data);
-header('Content-Type: application/json');
-header('Content-Type: text/html; charset=utf-8');
+include("conn/header.php");
 ?>
