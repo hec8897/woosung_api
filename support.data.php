@@ -40,6 +40,7 @@ while($row = mysqli_fetch_array($query)){
         "fixed" => $row['fixed'],
         "active" => $row['active'],
         "join" => $row['join'],
+        "imgs" => $row['imgs'],
         "date" => $row['date']
     ]);
 }

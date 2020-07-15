@@ -11,6 +11,7 @@ if($mode == 'create'){
     $desc = $_POST['desc'];
     $fixed = $_POST['fixed'];
     $active = $_POST['active'];
+    $imgs = $_POST['imgs'];
 
     $file0 = isset($_FILES['file0'])?FileUploader($_FILES['file0']):"";
     $file1 = isset($_FILES['file1'])?",".FileUploader($_FILES['file1']):"";
@@ -21,8 +22,8 @@ if($mode == 'create'){
     $fileName = $file0.$file1.$file2.$file3.$file4;
 
     $sql = "INSERT INTO `woosung_web`.`tb_support` 
-    (`title`, `cate`, `desc`, `date`, `fixed`, `active`,`file`) VALUES 
-    ('$title', '$cate', '$desc', '$date', '$fixed','$active','$fileName')";
+    (`title`, `cate`, `desc`, `date`, `fixed`, `active`,`file`,`imgs`) VALUES 
+    ('$title', '$cate', '$desc', '$date', '$fixed','$active','$fileName','$imgs')";
 
     $query =  mysqli_query($conn,$sql);
 }
@@ -34,6 +35,13 @@ else if($mode == 'update'){
     $active = $_POST['active'];
     $fileName = $_POST['fileData'];
     $idx = $_POST['no'];
+    $imgs = $_POST['imgs'];
+    $DelteImg = $_POST['delteImg'];
+
+
+    for($count = 0; $count < count($DelteImg); $count++){
+        unlink("upload_faq/".$DelteImg[$count]);
+    }
 
     $file0 = isset($_FILES['file0'])?FileUploader($_FILES['file0']):"";
     $file1 = isset($_FILES['file1'])?",".FileUploader($_FILES['file1']):"";
@@ -43,7 +51,7 @@ else if($mode == 'update'){
 
     $sql = "UPDATE `woosung_web`.`tb_support` SET `title` = '$title', 
     `cate` = '$cate', `desc` = '$desc', `fixed` = '$fixed', `active` = '$active', 
-    `file` = '$fileName' 
+    `file` = '$fileName' , `imgs`='$imgs'
     WHERE (`idx` = '$idx')";
     $query =  mysqli_query($conn,$sql);
 }
@@ -51,9 +59,14 @@ else{
     $mode = $data['mode'];
     if($mode == "delete"){
         $idx = $data['no'];
-        $files = $data['files'];
         $fileName = $files[0];
+        $files = $data['files'];
+        $imgs = $data['imgs'];
 
+        for($count = 0; $count < count($imgs); $count++){
+            unlink("upload_faq/".$imgs[$count]);
+        }
+        
         for($count = 0; $count < count($files); $count++){
             unlink("upload_support/".$files[$count]);
         }
