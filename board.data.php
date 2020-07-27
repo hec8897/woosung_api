@@ -17,6 +17,7 @@ while($row = mysqli_fetch_array($Faq)){
         "idx" => $row['idx'],
         "tit" => $row['tit'],
         "cate" => 'FAQ',
+        "link"=>"http://www.wssw.kr/#/board/faq/all"
     ]);
 }
 
@@ -25,16 +26,20 @@ while($row = mysqli_fetch_array($Support)){
         "idx" => $row['idx'],
         "tit" => $row['title'],
         "cate" => '공지사항',
+        "link"=>"http://www.wssw.kr/#/board/zoom/".$row['idx']
+
     ]);
 }
 
-while($row = mysqli_fetch_array($Support)){
-    array_push($result,[
-        "idx" => $row['idx'],
-        "tit" => $row['title'],
-        "cate" => 'QnA',
-    ]);
-}
+// while($row = mysqli_fetch_array($qna)){
+//     array_push($result,[
+//         "idx" => $row['idx'],
+//         "tit" => $row['title'],
+//         "cate" => 'QnA',
+//         "link"=>"http://www.wssw.kr/#/board/zoom/".$row['idx']
+
+//     ]);
+// }
 
 $phpResult = isset($query)?"ok":"no";
 

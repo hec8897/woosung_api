@@ -14,7 +14,7 @@
 //                         t_yellow:notice.cate == '공지사항'
 //                     }"
 //                     >[{{notice.cate}}]</span>
-//                     <b>{{notice.tit}}</b>
+//                     <b><a v-bind:href="notice.link" target='blank'>{{notice.tit}}</a></b>
 //                 </div>
 //             </div>`,
 //               data(){
@@ -74,10 +74,12 @@
 
 // }).$mount('#app')
 
+// es6===============================================
+
 "use strict";
 
 new Vue({
-  template: " <div class='bar'>\n    <div class='side left'></div>\n                <div class='arrow'>\n                    <img src='skmd_1/arrimg.gif' @click=\"prev\">\n                    <img src='skmd_1/arrimg1.gif' @click=\"next\">\n                </div>\n                <div class='side right'></div>\n                <div class='desc'>\n                    <span \n                    v-bind:class=\"{\n                        t_red:notice.cate == 'FAQ',\n                        t_blue:notice.cate == 'QnA',\n                        t_yellow:notice.cate == '\uACF5\uC9C0\uC0AC\uD56D'\n                    }\"\n                    >[{{notice.cate}}]</span>\n                    <b>{{notice.tit}}</b>\n                </div>\n            </div>",
+  template: " <div class='bar'>\n    <div class='side left'></div>\n                <div class='arrow'>\n                    <img src='skmd_1/arrimg.gif' @click=\"prev\">\n                    <img src='skmd_1/arrimg1.gif' @click=\"next\">\n                </div>\n                <div class='side right'></div>\n                <div class='desc'>\n                    <span \n                    v-bind:class=\"{\n                        t_red:notice.cate == 'FAQ',\n                        t_blue:notice.cate == 'QnA',\n                        t_yellow:notice.cate == '\uACF5\uC9C0\uC0AC\uD56D'\n                    }\"\n                    >[{{notice.cate}}]</span>\n                    <b><a v-bind:href=\"notice.link\" target='blank'>{{notice.tit}}</a></b>\n                </div>\n            </div>",
   data: function data() {
     return {
       no: 0,
@@ -94,7 +96,6 @@ new Vue({
     }).then(function (result) {
       _this.notices = result.data.result;
       _this.notice = _this.notices[0];
-      console.log(result);
     });
   },
   mounted: function mounted() {

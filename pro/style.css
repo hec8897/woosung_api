@@ -54,6 +54,10 @@ transform: translateY(-50%);
 div.desc span{
 margin-right: 5px;
 }
+a{
+    color: #fff;
+    text-decoration: none;
+}
 b{
 font-weight: normal;
 }
