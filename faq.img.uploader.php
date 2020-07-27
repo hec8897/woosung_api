@@ -7,7 +7,7 @@ function FileUploader($files){
   $time = date('YmdHis');
 
   // Valid file extensions
-  $valid_extensions = array("jpg","jpeg","png","gif");
+  $valid_extensions = array("jpg","jpeg","png","gif","PNG","JPG");
 
   // File extension
   $extension = pathinfo($filename, PATHINFO_EXTENSION);
@@ -25,7 +25,7 @@ function FileUploader($files){
 
   $Data= json_encode([
             "url"=>$fileRoute,
-            "img"=>$NewfileName,
+            "img"=>$NewfileName
         ]);
 
 echo urldecode($Data);

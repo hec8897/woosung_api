@@ -1,0 +1,70 @@
+html,body{
+    background-color: #000000;
+    font-family: 'Nanum Gothic', sans-serif;
+}
+
+* {
+margin: 0;
+padding: 0;
+}
+div.bar{
+height: 30px;
+border: 2px solid #CDE2FF;
+background-image: url(skmd_1/line-brd-b.gif);
+background-repeat: repeat-x;
+position: relative;
+}
+div.side{
+height: 100%;
+width: 12px;
+position: absolute;
+background-repeat: no-repeat;
+}
+
+div.side.left{
+left: 0;
+background-image: url(skmd_1/line-brd-lf.gif);
+
+}
+div.side.right{
+right: 0;
+background-image: url(skmd_1/line-brd-rf.gif);
+}
+div.arrow{
+position: absolute;
+right: 25px;
+top: 5px;
+}
+div.arrow img{
+cursor: pointer;
+display: block;
+margin-bottom: 5px;
+}
+
+div.desc{
+position: absolute;
+left: 40px;
+color: #fff;
+font-size: 13px;
+top: 40%;
+transform: translateY(-50%);
+}
+
+
+div.desc span{
+margin-right: 5px;
+}
+b{
+font-weight: normal;
+}
+
+.t_blue{
+color:rgb(51, 255, 255);
+}
+.t_red{
+color:rgb(255, 153, 0);
+}
+.t_green{}
+.t_yellow{
+color: rgb(255, 255, 51);
+}
