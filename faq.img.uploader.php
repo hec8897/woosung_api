@@ -21,7 +21,9 @@ function FileUploader($files){
   return $newFileName;
   }
   $NewfileName = FileUploader($_FILES['image']);
-  $fileRoute = isset($_FILES['image'])?"../woosung_api/upload_faq/".$NewfileName:"";
+  //$fileRoute = isset($_FILES['image'])?"../woosung_api/upload_faq/".$NewfileName:"";
+  $fileRoute = isset($_FILES['image'])?"http://www.wssw.kr/woosung_api/upload_faq/".$NewfileName:"";
+
 
   $Data= json_encode([
             "url"=>$fileRoute,

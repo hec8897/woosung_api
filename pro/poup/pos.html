@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html,body{
+            margin: 0;
+            padding: 0;
+        }
+        div.popup{
+            width: 1024px;
+            position: relative;
+        }
+        img{
+            width: 100%;
+        }
+        div.right{
+            width:60%;
+            height: 100%;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        div.btn{
+            width: 230px;
+            height: 50px;
+            background-color: #78c03c;
+            position: absolute;
+            left: 45%;
+            bottom: 6%;
+            transform: translateX(-50%);
+            color: #fff;
+            font-weight: bold;
+            line-height: 50px;
+            text-align: center;
+            cursor: pointer;
+            border-radius: 3px;
+            transition: 0.1s ease-in;
+        }
+        div.btn:hover{
+            background-color: #6daf36;
+        }
+        img.youtube{
+            width: 30px;
+            vertical-align: middle;
+        }
+        span{
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+    <div class='popup'>
+        <img src="pos.png" alt="">
+        <div class='right'>
+            <div class='btn'>
+                <img src="youtube.png" class='youtube' alt="">
+                <span>사용 동영상 보기 〉〉</span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
