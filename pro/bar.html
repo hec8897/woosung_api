@@ -10,19 +10,156 @@
 </head>
 
 <body>
-    <div id='app'></div>
-    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
-    <script src="axios.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bluebird/3.3.4/bluebird.min.js"></script>
-    <script> 
-    'use strict'; 
-    var promise = new Promise(function (resolve) { 
-        setTimeout(function () { resolve("result"); }, 1000); 
-        }); promise.then(function (result) { 
-            }, function (error) { 
-            }); 
+    <div id='app'>
+        <div class="bar">
+            <div class='side left'></div>
+            <div class='arrow'>
+                <img src='skmd_1/arrimg.gif' onclick="ButtonPrev()">
+                <img src='skmd_1/arrimg1.gif' onclick="ButtonNext()">
+            </div>
+            <div class='side right'></div>
+            <div class='desc' id='desc'>
+                <span class='t_red'>[FAQ]</span>
+                <b><a href="" target='blank'>우성소프트 윈윈프로입니다.</a></b>
+            </div>
+        </div>
+    </div>
+    <script>
+var XhttpData = function () {
+  xhttp = new XMLHttpRequest();
+
+  xhttp.onreadystatechange = function () {
+    if (this.readyState == 4 && this.status == 200) {
+      var returnJson = JSON.parse(this.responseText);
+      DATA = returnJson.result;
+      return DATA;
+    }
+  };
+
+  xhttp.open('POST', '../board.data.php', true);
+  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xhttp.send("data=0");
+}();
+
+var i = 0;
+
+function InnerTexter(Number) {
+  var Target = document.getElementById('desc');
+
+  if (DATA[Number].cate == 'FAQ') {
+    SpanClass = 't_red';
+  } else if (DATA[Number].cate == 'Qna') {
+    SpanClass = 't_blue';
+  } else if (DATA[Number].cate == '공지사항') {
+    SpanClass = 't_yellow';
+  } else {
+    SpanClass = 't_yellow';
+  }
+
+  Target.innerHTML = "<div>\n                <span class='".concat(SpanClass, "'>[").concat(DATA[Number].cate, "]</span>\n                <b><a href=\"").concat(DATA[Number].link, "\" target='blank'>").concat(DATA[Number].tit, "</a></b>\n                </div>");
+}
+
+setInterval(function () {
+  if (DATA.length - 1 <= i) {
+    i = 0;
+  } else {
+    i += 1;
+  }
+
+  InnerTexter(i);
+}, 4000);
+
+function ButtonPrev() {
+  if (i == 0) {
+    var _i = 0;
+  } else {
+    i -= 1;
+    InnerTexter(i);
+  }
+}
+
+function ButtonNext() {
+  if (DATA.length - 1 <= i) {
+    InnerTexter(0);
+  } else {
+    i += 1;
+    InnerTexter(i);
+  }
+}
+
+        // let XhttpData = function (){
+        //     xhttp = new XMLHttpRequest();
+        //     xhttp.onreadystatechange = function () {
+        //         if (this.readyState == 4 && this.status == 200) {
+        //             let returnJson = JSON.parse(this.responseText)
+        //             DATA = returnJson.result
+        //             return DATA
+        //         }
+        //     }
+        // xhttp.open('POST', '../board.data.php', true);
+        // xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        // xhttp.send("data=0")
+        // }()
+
+        // let i = 0
+
+        // function InnerTexter(Number){
+        //     let Target = document.getElementById('desc')
+        //     if(DATA[Number].cate == 'FAQ'){
+        //         SpanClass = 't_red'
+        //     }
+        //     else if(DATA[Number].cate == 'Qna'){
+        //         SpanClass = 't_blue'
+        //     }
+        //     else if(DATA[Number].cate == '공지사항'){
+        //         SpanClass = 't_yellow'
+        //     }
+        //     else{
+        //         SpanClass = 't_yellow'
+        //     }
+
+        //     Target.innerHTML = `<div>
+        //         <span class='${SpanClass}'>[${DATA[Number].cate}]</span>
+        //         <b><a href="${DATA[Number].link}" target='blank'>${DATA[Number].tit}</a></b>
+        //         </div>`
+        //     }
+
+
+        //     setInterval(() => {
+        //         if(DATA.length-1 <= i){
+        //             i = 0
+        //         }
+        //         else{
+        //             i+=1
+        //         }
+        //         InnerTexter(i)
+
+                
+        //     }, 4000);
+
+        //     function ButtonPrev(){
+        //         if(i == 0){
+        //             let i = 0
+        //         }
+        //         else{
+        //             i-=1;
+        //             InnerTexter(i)
+        //         }
+        //     }
+
+
+        //     function ButtonNext(){
+
+        //         if(DATA.length-1 <= i){
+        //             InnerTexter(0)
+        //         }
+        //         else{
+        //             i+=1;
+        //             InnerTexter(i)
+        //         }
+        //     }
+
     </script>
-    <script src='app.js'></script>
 </body>
 
 </html>
